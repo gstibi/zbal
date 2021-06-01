@@ -1,7 +1,9 @@
-function Item() {
+function Item({ item }) {
     return (
         <div>
-            <p>Some Item</p>
+            <h5>{item.name}</h5>
+            <p>{item.id}</p>
+            <p>{item.weight}</p>
         </div>
     )
 }

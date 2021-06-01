@@ -1,11 +1,11 @@
 import Item from './Item'
 
-function ItemsList() {
+function ItemsList({ items }) {
+
     return (
         <div className='items-list'>
-            <Item/>
-            <Item/>
-            <Item/>
+            {items.map((item) => (<h3 key={item.id}>{item.name}</h3>))}
+            {items.map((item) => (<Item item={ item }/>))}
         </div>
     )
 }
