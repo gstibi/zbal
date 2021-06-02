@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import  { get, set, update, entries, keys, values } from 'idb-keyval'
 
 import Header from './components/Header'
 import ChartArea from './components/ChartArea'
@@ -13,33 +14,33 @@ import ItemDetail from './components/ItemDetail'
 
 function App() {
 
-    const [items, setItems] = useState([
-        {
-            id: 1,
-            name: 'Name of item',
-            weight: 3
-        },
-        {
-            id: 2,
-            name: 'fs',
-            weight: 2
-        },
-        {
-            id: 3,
-            name: 'fdsf',
-            weight: 4
-        },
-    ])
+    const [items, setItems] = useState([])
 
-    const addItem = (item) => {
-        /**
-         * Add item to list of items.
-         */
+    /**
+     * Read db and update state
+     */
+    useEffect(() => {
+        const getItems = async () => {
+            const data = await values()
+            if(data){
+                setItems(data)
+            }
+            else{
+                setItems([])
+            }
+        }
+
+        getItems()
+    }, [])
+
+    const addItem = async (item) => {
         //generate random id
         var id = Math.floor(Math.random() * 100)
         item =  { id, ...item}
-        setItems([...items, item])
-        console.log(items)
+        await set(item.id, item)
+        var data = await values()
+        console.log(data)
+        setItems([...data])
     }
 
     return (

@@ -1,4 +1,5 @@
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function ItemDetail() {
 
@@ -8,6 +9,7 @@ function ItemDetail() {
     return (
         <div>
             <p>Item id: {id}</p>
+            <Link to='/'>Back</Link>
         </div>
     )
 }

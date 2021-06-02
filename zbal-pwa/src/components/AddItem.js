@@ -1,13 +1,14 @@
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useState } from 'react'
 
 function AddItem({ onAdd }) {
     const [name, setName] = useState('')
     const [weight, setWeight] = useState('')
 
+    const history = useHistory()
+
     const onSubmit = (e) => {
         e.preventDefault()
-
         if(!name){
             alert('Add name')
         }
@@ -16,6 +17,9 @@ function AddItem({ onAdd }) {
 
         setName('')
         setWeight('')
+
+        //go to landing page
+        history.push('/')
     }
 
     return (
