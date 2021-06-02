@@ -9,6 +9,7 @@ import ItemsList from './components/ItemsList'
 import AddButton from './components/AddButton'
 import Footer from './components/Footer'
 import AddItem from './components/AddItem'
+import ItemDetail from './components/ItemDetail'
 
 function App() {
 
@@ -30,6 +31,17 @@ function App() {
         },
     ])
 
+    const addItem = (item) => {
+        /**
+         * Add item to list of items.
+         */
+        //generate random id
+        var id = Math.floor(Math.random() * 100)
+        item =  { id, ...item}
+        setItems([...items, item])
+        console.log(items)
+    }
+
     return (
         <Router>
             <div className="App">
@@ -41,7 +53,10 @@ function App() {
                         <AddButton/>
                     </Route>
                     <Route path='/addItem'>
-                        <AddItem/>
+                        <AddItem onAdd={addItem}/>
+                    </Route>
+                    <Route path='/:id'>
+                        <ItemDetail/>
                     </Route>
                 </Switch>
 

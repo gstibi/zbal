@@ -1,9 +1,13 @@
+import { Link } from 'react-router-dom'
+
 function Item({ item }) {
     return (
         <div>
-            <h5>{item.name}</h5>
-            <p>{item.id}</p>
-            <p>{item.weight}</p>
+            <h4>Name: {item.name}</h4>
+            <p>Weight: {item.weight}</p>
+            <Link to={'/' + item.id}>
+                <button>Detail</button>
+            </Link>
         </div>
     )
 }
