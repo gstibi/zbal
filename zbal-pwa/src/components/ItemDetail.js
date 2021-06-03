@@ -2,7 +2,7 @@ import { useParams, useHistory, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { get } from 'idb-keyval'
 
-function ItemDetail({ onDelete }) {
+function ItemDetail({ onDelete, itemsStore }) {
 
     const [item, setItem] = useState([])
     const { id } = useParams()
@@ -10,12 +10,12 @@ function ItemDetail({ onDelete }) {
 
     useEffect(() => {
         const getItem = (async () => {
-            const data = await get(id)
+            const data = await get(id, itemsStore)
             data ? setItem(data) : history.push('/')
         })
 
         getItem()
-    }, [history, id])
+    }, [history, id, itemsStore])
 
     return (
         <div>
