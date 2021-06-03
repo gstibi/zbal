@@ -34,8 +34,8 @@ function AddItem({ onAdd }) {
                 />
                 <label>Weight</label>
                 <input
-                    type='text'
-                    placeholder='Weight'
+                    type='number'
+                    placeholder='0'
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}
                 />

@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import  { get, set, update, entries, keys, values } from 'idb-keyval'
+import  { set, values, del } from 'idb-keyval'
+import _ from 'lodash'
 
 import Header from './components/Header'
 import ChartArea from './components/ChartArea'
@@ -13,7 +14,6 @@ import AddItem from './components/AddItem'
 import ItemDetail from './components/ItemDetail'
 
 function App() {
-
     const [items, setItems] = useState([])
 
     /**
@@ -35,12 +35,19 @@ function App() {
 
     const addItem = async (item) => {
         //generate random id
-        var id = Math.floor(Math.random() * 100)
+        var id = _.uniqueId('item_')
         item =  { id, ...item}
         await set(item.id, item)
         var data = await values()
         console.log(data)
         setItems([...data])
+    }
+
+    const deleteItem = async (id, history) => {
+        await del(id)
+        var data = await values()
+        setItems([...data])
+        history.push('/')
     }
 
     return (
@@ -56,8 +63,8 @@ function App() {
                     <Route path='/addItem'>
                         <AddItem onAdd={addItem}/>
                     </Route>
-                    <Route path='/:id'>
-                        <ItemDetail/>
+                    <Route path='/item/:id'>
+                        <ItemDetail onDelete={deleteItem}/>
                     </Route>
                 </Switch>
 
