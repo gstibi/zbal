@@ -2,13 +2,19 @@ import { Link } from 'react-router-dom'
 
 function Item({ item }) {
     return (
-        <div>
-            <h4>Name: {item.name}</h4>
-            <p>Weight: {item.weight}</p>
-            <Link to={'/item/' + item.id}>
-                <button>Detail</button>
-            </Link>
-        </div>
+        <Link to={'/item/' + item.id}>
+            <div className='container-md'>
+                <div className='row'>
+                    <div className='col-6'>
+                        <h4>{item.name}</h4>
+                    </div>
+                    <div className='col-6'>
+                        <button className='btn btn-primary'>Detail</button>
+                    </div>
+                </div>
+                <hr></hr>
+            </div>
+        </Link>
     )
 }
 

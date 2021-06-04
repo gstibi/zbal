@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import  { createStore, set, values, del } from 'idb-keyval'
 import _ from 'lodash'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Header from './components/Header'
 import ChartArea from './components/ChartArea'
@@ -64,7 +65,7 @@ function App() {
                         <AddItem onAdd={addItem}/>
                     </Route>
                     <Route path='/item/:id'>
-                        <ItemDetail onDelete={deleteItem} itemsStore={itemsStore}/>
+                        <ItemDetail onDelete={deleteItem} itemsStore={itemsStore} items={items}/>
                     </Route>
                 </Switch>
 
