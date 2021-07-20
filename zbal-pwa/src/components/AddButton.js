@@ -2,9 +2,14 @@ import { Link } from 'react-router-dom'
 
 function AddButton() {
     return (
-        <button>
-            <Link to='/addItem'>Add new item</Link>
-        </button>
+        <div className="floating-button">
+            <Link to='/addItem'>
+                <button className='btn btn-primary'>
+                    Add new item
+                </button>
+            </Link>
+        </div>
+
     )
 }
 
