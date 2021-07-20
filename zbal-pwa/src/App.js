@@ -33,7 +33,7 @@ function App() {
         }
 
         getItems()
-    }, [])
+    }, [itemsStore])
 
     const addItem = async (item) => {
         //generate random id
