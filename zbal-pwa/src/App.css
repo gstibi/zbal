@@ -7,4 +7,5 @@
     bottom: 5vh;
     right: 50vw;
     transform: translateX(50%);
+    z-index: 10;
 }
