@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from './components/Header'
 import ChartArea from './components/ChartArea'
 import ItemsList from './components/ItemsList'
-import AddButton from './components/AddButton'
+import Button from './components/Button'
 import Footer from './components/Footer'
 import AddItem from './components/AddItem'
 import ItemDetail from './components/ItemDetail'
@@ -32,8 +32,9 @@ function App() {
             }
         }
 
+        //TODO: solve problem with imtesStore causing frequent calls of useEffect
         getItems()
-    }, [itemsStore])
+    }, [])
 
     const addItem = async (item) => {
         //generate random id
@@ -59,7 +60,11 @@ function App() {
                     <Route path='/' exact>
                         <ChartArea/>
                         <ItemsList items={items}/>
-                        <AddButton/>
+                        <Button
+                            text='Add new item'
+                            link='/addItem'
+                            float='center'
+                        />
                     </Route>
                     <Route path='/addItem'>
                         <AddItem onAdd={addItem}/>

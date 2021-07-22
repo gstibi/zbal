@@ -4,8 +4,21 @@
 
 .floating-button{
     position: fixed;
+    z-index: 10;
+}
+
+.floating-button-right{
+    bottom: 5vh;
+    right: 5vw;
+}
+
+.floating-button-center{
     bottom: 5vh;
     right: 50vw;
     transform: translateX(50%);
-    z-index: 10;
+}
+
+.floating-button-left{
+    bottom: 5vh;
+    left: 5vw;
 }

@@ -6,7 +6,6 @@ function Item({ item }) {
             <div className='d-flex justify-content-between'>
                 <h4>{item.name}</h4>
                 <div><span className="badge bg-secondary">{item.weight} kg</span></div>
-                
             </div>
             
             

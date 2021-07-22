@@ -18,10 +18,23 @@ function ItemDetail({ onDelete, itemsStore }) {
     }, [history, id, itemsStore])
 
     return (
-        <div>
-            <p>Item id: {item.id}</p>
-            <p>Item name: {item.name}</p>
-            <p>Item weight: {item.weight}</p>
+        <div className='list-group'>
+
+            {Object.keys(item).map(value => {
+                /*ID of item is not required in UI*/
+                if(value === 'id'){
+                    return false
+                }
+                return (
+                    <div className='list-group-item list-group-item-action' key={item.id + value}>
+                        <div className='d-flex justify-content-between'>
+                            <p>{value}</p>
+                            <h4>{item.value}</h4>
+                        </div>
+                    </div>
+                )
+            })}
+
             <button onClick={() => onDelete(id, history)}>Delete</button>
             <Link to='/'>Back</Link>
         </div>
