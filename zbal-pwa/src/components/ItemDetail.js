@@ -1,6 +1,8 @@
-import { useParams, useHistory, Link } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { get } from 'idb-keyval'
+
+import Button from './Button'
 
 function ItemDetail({ onDelete, itemsStore }) {
 
@@ -29,14 +31,24 @@ function ItemDetail({ onDelete, itemsStore }) {
                     <div className='list-group-item list-group-item-action' key={item.id + value}>
                         <div className='d-flex justify-content-between'>
                             <p>{value}</p>
-                            <h4>{item.value}</h4>
+                            <h4>{item[value]}</h4>
                         </div>
                     </div>
                 )
             })}
 
-            <button onClick={() => onDelete(id, history)}>Delete</button>
-            <Link to='/'>Back</Link>
+            <Button
+                text='Delete'
+                onClick={() => onDelete(id, history)}
+                float='left'
+                color='danger'
+            />
+            <Button
+                text='Back'
+                link='/'
+                float='right'
+                color='outline-primary'
+            />
         </div>
     )
 }

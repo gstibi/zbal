@@ -1,5 +1,7 @@
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useState } from 'react'
+
+import Button from './Button'
 
 function AddItem({ onAdd }) {
     const [name, setName] = useState('')
@@ -25,26 +27,46 @@ function AddItem({ onAdd }) {
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <label>Name</label>
-                <input
-                    type='text'
-                    placeholder='Add name'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-                <label>Weight</label>
-                <input
-                    type='number'
-                    placeholder='0'
-                    value={weight}
-                    onChange={(e) => setWeight(e.target.value)}
-                />
-                <input
+                <div className='list-group'>
+                    <div className='list-group-item'>
+                            <label className='form-label'>Name</label>
+                            <input
+                                className='form-control'
+                                type='text'
+                                placeholder='Add name'
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                    </div>
+                </div>
+
+                <div className='list-group'>
+                    <div className='list-group-item'>
+                            <label className='form-label'>Weight</label>
+                            <input
+                                className='form-control'
+                                type='number'
+                                placeholder='0'
+                                value={weight}
+                                onChange={(e) => setWeight(e.target.value)}
+                            />
+                    </div>
+                </div>
+                
+                <Button
+                    text='Save item'
+                    color='primary'
                     type='submit'
-                    value='Save item'
+                    float='left'
                 />
             </form>
-            <Link to='/'>Go back</Link>
+            
+            <Button
+                text='Back'
+                float='right'
+                color='outline-primary'
+                link='/'
+            />
         </div>
     )
 }

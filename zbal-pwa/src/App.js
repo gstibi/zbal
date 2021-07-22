@@ -64,6 +64,7 @@ function App() {
                             text='Add new item'
                             link='/addItem'
                             float='center'
+                            color='primary'
                         />
                     </Route>
                     <Route path='/addItem'>
