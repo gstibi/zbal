@@ -53,6 +53,7 @@ function AddItem({ onAdd }) {
                                 placeholder='0'
                                 value={weight}
                                 onChange={(e) => setWeight(e.target.value)}
+                                step="0.01"
                             />
                     </div>
                 </div>
