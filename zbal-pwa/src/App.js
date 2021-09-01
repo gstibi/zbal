@@ -7,12 +7,12 @@ import _ from 'lodash'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Header from './components/Header'
-import ChartArea from './components/ChartArea'
 import ItemsList from './components/ItemsList'
 import Button from './components/Button'
 import Footer from './components/Footer'
 import AddItem from './components/AddItem'
 import ItemDetail from './components/ItemDetail'
+import ChartComponent from './components/ChartComponent'
 
 function App() {
     const [items, setItems] = useState([])
@@ -38,7 +38,7 @@ function App() {
 
     const addItem = async (item) => {
         //generate random id
-        var id = _.uniqueId()
+        var id = Date.now().toString()
         item =  { id, ...item}
         await set(item.id, item, itemsStore)
         var data = await values(itemsStore)
@@ -58,7 +58,9 @@ function App() {
                 <Header/>
                 <Switch>
                     <Route path='/' exact>
-                        <ChartArea/>
+                        <div className="chart-area">
+                            <ChartComponent items={items}/>
+                        </div>
                         <ItemsList items={items}/>
                         <Button
                             text='Add new item'

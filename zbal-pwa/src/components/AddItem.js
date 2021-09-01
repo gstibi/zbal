@@ -15,7 +15,11 @@ function AddItem({ onAdd }) {
             alert('Add name')
         }
 
-        onAdd({ name, weight })
+        if(!weight){
+            onAdd({ name, weight: 0 })
+        } else {
+            onAdd({ name, weight })
+        }
 
         setName('')
         setWeight('')

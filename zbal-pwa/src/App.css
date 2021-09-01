@@ -26,3 +26,8 @@
 .header{
     text-align: center;
 }
+
+.chart-area{
+    height: 200px;
+    min-height: 20vh;
+}

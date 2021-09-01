@@ -1,50 +1,40 @@
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Cell } from 'recharts';
+import React from 'react';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
-const data = [
-  { name: 'Group A', value: 1000 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
-export default class Example extends PureComponent {
+function ChartComponent({items}) {
+    
+    const prepareData = (items) => {
+        const itemsData = items.map(item => {
+            return {    
+                id: item.id,
+                name: `${item.name}`,
+                value: Number(item.weight)
 
-  render() {
+                }
+        });
+        return itemsData
+    }
+
+    const data = prepareData(items)
+    
     return (
-      <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
-        <Pie
-          data={data}
-          cx={120}
-          cy={200}
-          innerRadius={60}
-          outerRadius={100}
-          fill="#8884d8"
-          paddingAngle={5}
-          dataKey="value"
-        >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Pie
-          data={data}
-          cx={420}
-          cy={200}
-          startAngle={180}
-          endAngle={0}
-          innerRadius={60}
-          outerRadius={80}
-          fill="#8884d8"
-          paddingAngle={5}
-          dataKey="value"
-        >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-      </PieChart>
-    );
-  }
+        <ResponsiveContainer width="100%" height="100%">
+            <PieChart width={500} height={500}>
+                <Pie
+                    data={data}
+                    innerRadius={60}
+                    outerRadius={80}
+                    fill="#8884d8"
+                    paddingAngle={1}
+                    dataKey="value"
+                    >
+                </Pie>
+                <Tooltip/>
+            </PieChart>
+        </ResponsiveContainer>
+    )
 }
+
+export default ChartComponent
+
